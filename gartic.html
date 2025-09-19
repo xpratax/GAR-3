@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gartic Auto Draw Bookmarklet Generator</title>
+<style>
+body { background: #000; color: #ff0000; font-family: monospace; text-align:center; }
+input, button, textarea { margin: 10px; padding: 5px; }
+canvas { display:none; }
+textarea { width:90%; height:100px; }
+</style>
+</head>
+<body>
+<h1>GART#3</h1>
+<!-- Adicione dentro do <body> do seu HTML existente -->
+<pre id="asciiNeon">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⠭⠙⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣷⣮⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣦⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣻⣿⣿⣿⣿⣿⠂⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣷⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⢙⣿⣿⣿⣿⣿⣴⣶
+⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⢸⣧⠁⠀⠀⠀⠀⠀⠀⠀⠀⢀⣽⣧⣿⣿⣿⣿⣿
+⠀⡀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣸⣿⣷⣄⠀⠀⠀⠀⠀⣰⣿⣿⢸⣿⣿⣿⣿⣿
+⠀⠈⠫⠂⠀⠀⠊⣿⢿⣿⡏⣿⠿⠟⠀⠀⠀⠀⠈⠿⠿⣿⢸⣿⣿⣿⠛⠋
+⠀⠀⠀⠀⠱⡀⠈⠁⠀⢝⢷⡸⡇⠀⠀⠀⠀⠀⠀⠀⠀⢹⢣⡿⡙⠀⠉⠀⠀
+⠀⠀⠀⠀⢀⠇⠀⠀⢀⣾⣦⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢟⣼⣧⡀⠀⠀⠀
+⠀⠀⠀⢀⠎⠀⢀⣴⣿⣿⣿⡇⣧⠀⠀⠀⠀⠀⠀⠀⠀⡾⣼⣿⣿⣿⡄⠀⠀
+⠀⢀⡔⠁⠀⢠⡟⢻⡻⣿⣿⣿⣌⡀⠀⠀⠀⠀⠀⠀⢘⣠⣿⣿⣿⢟⠇⠀⠀
+⢀⡎⠀⠀⠀⣼⠁⣼⣿⣦⠻⣿⣿⣷⡀⠀⠀⠀⢠⣿⣿⣿⢏⣴⣿⣇⠀⠀
+⢸⠀⠀⠀⠀⡟⢰⣿⣿⡟⠀⠘⢿⣿⣷⡀⠀⢠⣿⣿⡿⠁⠀⢿⣿⣿⠀⠀
+⠈⠳⠦⠴⠞⠀⢸⣿⣿⠁⠀⠀⠀⠹⣿⡧⠀⣾⣿⠏⠀⠀⠀⠘⣿⣿⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⢰⣿⡇⠀⢿⣿⡀⠀⠀⠀⠀⣽⣿⡄⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⢸⣿⡇⠀⢸⣿⡇⠀⠀⠀⠀⢸⣿⡇⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⣿⠁⠀⠀⠀⠀⢸⣿⡇⠀⢸⣿⠃⠀⠀⠀⠀⢸⣿⠇⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⣿⡇⠀⢸⡿⠀⠀⠀⠀⠀⠀⢸⡟⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⣆⠀⠀⠀⠀⠀⣿⣧⠀⣿⣧⠀⠀⠀⠀⠀⠀⣼⣧⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠏⢿⠄⠀⠀⠀⠐⢸⣿⠀⣿⠇⠀⠀⠀⠀⢰⡿⠋⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠁⠀
+</pre>
+
+<style>
+#asciiNeon {
+    font-family: monospace;
+    color: #ff0000; /* vermelho neon */
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff0000,
+        0 0 80px #ff0000;
+    white-space: pre; /* mantém os espaços da arte ASCII */
+    text-align: center;
+    font-size: 16px;
+}
+</style>
+
+
+<input type="file" id="imageLoader" accept="image/*"><br>
+<button id="generateBtn">Gerar Bookmarklet/JS</button><br>
+<textarea id="output" placeholder="O bookmarklet aparecerá aqui..." readonly></textarea>
+
+<canvas id="hiddenCanvas" width="50" height="50"></canvas>
+
+<script>
+const canvas = document.getElementById('hiddenCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+
+document.getElementById('imageLoader').addEventListener('change', function(e){
+    const reader = new FileReader();
+    reader.onload = function(event){
+        img.onload = function(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.drawImage(img,0,0,canvas.width,canvas.height);
+            alert("Imagem carregada e redimensionada!");
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+
+document.getElementById('generateBtn').addEventListener('click', function(){
+    if(!img.src){ alert("Carregue uma imagem primeiro!"); return; }
+    const imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    const pixels = imgData.data;
+    const step = 1; // cada pixel será desenhado
+    let drawCode = "javascript:(function(){";
+    drawCode += "const canvas=document.querySelector('canvas');";
+    drawCode += "const ctx=canvas.getContext('2d');";
+
+    for(let y=0;y<canvas.height;y+=step){
+        for(let x=0;x<canvas.width;x+=step){
+            const idx = (y*canvas.width+x)*4;
+            const r=pixels[idx], g=pixels[idx+1], b=pixels[idx+2], a=pixels[idx+3];
+            if(a>0){
+                drawCode += `ctx.fillStyle='rgb(${r},${g},${b})';ctx.fillRect(${x},${y},${step},${step});`;
+            }
+        }
+    }
+    drawCode += "})();";
+    document.getElementById('output').value = drawCode;
+    alert("Bookmarklet gerado! Copie e cole no seu favorito ou console.");
+});
+</script>
+</body>
+</html>
+
