@@ -4,7 +4,7 @@
 
 GAR#3 é um **bot de desenho automático** para Gartic e Sketchpad, que permite enviar imagens e desenhar automaticamente pixelizando a imagem no canvas do jogo. Criado para diversão e experimentação educativa com JavaScript e HTML.
 ---
-[![Abrir GAR#3](https://img.shields.io/badge/Abrir-GAR%233-red?style=for-the-badge&logo=html5)](https://xpratax.github.io/GAR-3/GART.html)
+[![Abrir GAR#3](https://img.shields.io/badge/Abrir-GAR%233-red?style=for-the-badge&logo=html5)](https://xpratax.github.io/GAR-3-raiz/)
 ---
 
 ## 🔹 Funcionalidades
